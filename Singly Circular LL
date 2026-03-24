@@ -1,0 +1,50 @@
+import java.util.*;
+class node{
+    int data;
+    node next;              //struct *next       //c la address ah point panrathu pointers - java la object
+    node(int d){
+        data=d;
+        next=null;
+    }
+}
+class ll{             
+    node head=null;
+    node prev=null;                            //insert and display method elutha porom
+    void insert(int value){
+        node newnode=new node(value);            //new node create panrom
+        if(head==null){
+            head=newnode;                      //new node oda address prev node oda next la store panrom
+            newnode.next=head;
+            prev=newnode; 
+        }
+        else{
+            prev.next=newnode;
+            newnode.next=head;
+            prev=newnode;
+        }
+    }
+    void display(){
+        if(head==null){                     //head null ah iruntha theva illa ma while loop lam poga vendam
+            return;
+        }
+        if(head!=null){                     //infinite loop aaga koodathu nu namma head point panra first element ah mattum thaniya print pannitu aprm ah michatha ellam print panrom
+            System.out.print(head.data+" ");
+        }
+        node temp=head.next;                //head not equal null namakku kedaikave kedaikaathu bcoz ithu circular ll
+        while(temp!=head){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+}
+public class MyLinkedList {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        ll l=new ll();                  //oru class ah access panrathu ku object venum... so class ll ku l nu object create panrom
+        while(sc.hasNext()){
+            int d=sc.nextInt();
+            l.insert(d); 
+        }
+        l.display();
+    }
+}
