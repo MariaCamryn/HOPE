@@ -1,0 +1,95 @@
+/*
+class Node{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+*/
+/*end - last node ah point pannanum. so atha null nu initialise panrom.
+curr - traverse panna use panra
+n - total number of nodes
+count - if i/p is 999, we should turn all 9s to 0 and add a new node in the front. count oda main purpose namma list ah vittu veliya poira koodathu nu track panna use panrom.
+
+logic 1:
+if digit<9
+digit=digit+1
+return head
+
+if digit==9 
+digit=0
+last node oda ptr ah prev la thooki podrom
+curr ah head ah point panna solrom
+count++
+*/
+
+class Solution {
+    public Node addOne(Node head) {
+        Node curr=head;
+        Node end=null;
+        int count=0;
+        int n=0;
+        while(curr!=null){
+            n++;
+            curr=curr.next;
+        }
+        curr=head;
+        while(count<n){
+            while(curr.next!=end){
+                curr=curr.next;
+            }
+            if(curr.data<9){
+                curr.data=curr.data+1;
+                return head;
+            }
+            else{
+                curr.data=0;
+                end=curr;
+                curr=head;
+                count++;
+            }
+        }
+        Node h=new Node(1);
+        h.next=head;
+        return h;
+    }
+}
+
+logic 2:
+target - rightmost non 9 value ah kandupudikum
+target ku aprm ah irukka ella value um 0 ah maathurom
+if all 9 na, athuku munnadi oru nn create panrom
+
+
+class Solution{
+    public Node addOne(Node head){
+        Node curr=head;
+        Node target=null;
+        while(curr!=null){
+            if(curr.data<9){
+                target=curr;
+            }
+            curr=curr.next;
+        }
+        if(target==null){
+            Node nn=new Node(1);
+            nn.next=head;
+            curr=nn.next;
+            while(curr!=null){
+                curr.data=0;
+                curr=curr.next;
+            }
+            return nn;
+        }
+        target.data++;
+        curr=target.next;
+        while(curr!=null){
+            curr.data=0;
+            curr=curr.next;
+        }
+        return head;
+    }
+}
