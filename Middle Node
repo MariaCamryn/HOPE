@@ -1,0 +1,55 @@
+import java.util.*;
+class node{
+    int data;
+    node next;              //struct *next       //c la address ah point panrathu pointers - java la object
+    node(int d){
+        data=d;
+        next=null;
+    }
+}
+class ll{             
+    node head=null;
+    node prev=null;                            //insert and display method elutha porom
+    void insert(int value){
+        node newnode=new node(value);            //new node create panrom
+        if(head==null){
+            head=newnode;
+            prev=newnode;                        //new node oda address prev node oda next la store panrom
+
+        }
+        else{
+            prev.next=newnode;
+            prev=newnode;
+        }
+    }
+    //middle node la irukka element ah kandupudikka fn ithu. 2 pointer method la panrom. fast ptr last node pogum pothu, slow pointer middle node la nikkum. atha print panrom
+    int findMid(node head){                         
+        node slow=head;                             
+        node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow.data;
+    }
+    void display(){
+        node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        int mid=findMid(head);
+        System.out.print("\nMid element is: "+mid);         //main fn la print panna head ku oru obj create panra mathiri irukum. athaan display fn la ye print panniten
+    }
+}
+public class MyLinkedList {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        ll l=new ll();                  //oru class ah access panrathu ku object venum... so class ll ku l nu object create panrom
+        while(sc.hasNext()){
+            int d=sc.nextInt();
+            l.insert(d); 
+        }
+        l.display();
+    }
+}
