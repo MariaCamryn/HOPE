@@ -1,0 +1,49 @@
+//usual ah namma head and prev ah global ah declare panvom. prev ah use panni namma new node ah insert panvom. but ippo namma rendu variable ah yum local ah declare panrom. 
+//head ah main class la yum, prev ndra variable ah thookitom. athuku pathila oru while loop ah pottu, antha loop poi new node ah enga insert pannanum nu kandupudikuthu.
+//like t ah move pannite irukum node la value irukum pothu, null aachu na antha place la new node ah insert panrom
+
+import java.util.*;
+class node{
+    int data;
+    node next;              //struct *next       //c la address ah point panrathu pointers - java la object
+    node(int d){
+        data=d;
+        next=null;
+    }
+}
+class ll{                                       //insert and display method elutha porom 
+    node insert(node head,int value){
+        node newnode=new node(value);            //new node create panrom
+        if(head==null){
+            head=newnode;
+        }
+        else{
+            node t=head;
+            while(t.next!=null){
+                t=t.next;
+            }
+            t.next=newnode;
+        }
+        return head;
+    }
+    void display(node head){
+        node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+}
+public class MyLinkedList {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        ll l=new ll();                  //oru class ah access panrathu ku object venum... so class ll ku l nu object create panrom
+        node head=null;                //head ah local ah declare panrom
+        node prev=null;
+        while(sc.hasNext()){
+            int d=sc.nextInt();
+            head=l.insert(head,d); 
+        }
+        l.display(head);
+    }
+}
