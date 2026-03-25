@@ -1,0 +1,42 @@
+//Children -> Root
+
+import java.util.*;
+class node{
+  int data;
+  ArrayList<node> children;
+  node(int val){
+    data=val;
+    children=new ArrayList<>();
+  }
+}
+public class Main{
+  public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    Queue<node> q=new LinkedList<>();
+    int val=sc.nextInt();
+    node root=new node(val);
+    q.add(root);
+    while(!q.isEmpty()&& sc.hasNext()){
+      node curr=q.poll();
+      int c=sc.nextInt();
+      for(int i=0;i<c;i++){
+        int childval=sc.nextInt();
+        node child=new node(childval);
+        curr.children.add(child);
+        q.add(child);
+      }
+    }
+    System.out.print("DFS: ");
+    dfs(root);
+  }
+
+static void dfs(node root){
+  if(root==null){
+    return;
+  }
+  for(node i:root.children){
+    dfs(i);
+  }
+  System.out.print(root.data+" ");
+}
+}
