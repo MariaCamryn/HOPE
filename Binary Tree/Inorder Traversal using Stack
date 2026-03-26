@@ -39,6 +39,9 @@ public class Main {
   }
   
   static void inorder(Node root){
+    if(root==null){
+      return null;
+    }
     Stack<Node> st=new Stack<>();
     Node curr=root;
     while(curr!=null || !st.isEmpty()){
