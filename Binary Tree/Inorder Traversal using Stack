@@ -1,0 +1,53 @@
+import java.util.*;
+class Node{
+  int data;
+  Node left,right;
+  Node(int val){
+    data=val;
+    left=right=null;
+  }
+}
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    Queue<Node> q=new LinkedList<>();
+    int val=sc.nextInt();
+    Node root=new Node(val);
+    q.add(root);
+    while(!q.isEmpty()){
+      Node curr=q.poll();
+      int leftval=sc.nextInt();
+      if(leftval!=-1){
+        Node leftnode=new Node(leftval);
+        curr.left=leftnode;
+        q.add(leftnode);
+      }
+      int rightval=sc.nextInt();
+      if(rightval!=-1){
+        Node rightnode=new Node(rightval);
+        curr.right=rightnode;
+        q.add(rightnode);
+      }
+    }
+
+    System.out.print("Inorder: ");
+    inorder(root);
+    System.out.println();
+    
+  }
+  
+  static void inorder(Node root){
+    Stack<Node> st=new Stack<>();
+    Node curr=root;
+    while(curr!=null || !st.isEmpty()){
+      while(curr!=null){                      //accessing leftmost node
+        st.push(curr);
+        curr=curr.left;
+      }
+      curr=st.pop();
+      System.out.print(curr.data+" ");
+      curr=curr.right;
+    }
+  }
+  
+}
