@@ -1,0 +1,70 @@
+✅ General Procedure
+👉 To find negative binary of a number:
+Two’s complement of a positive number is its negative value
+To find two’s complement:
+ - Convert number to binary
+ - Find one’s complement (flip all bits)
+ - Add 1 → gives two’s complement
+Flipping all bits is known as one’s complement
+Adding 1 to one’s complement is known as two’s complement
+The obtained number is the negative binary value
+
+
+🔥 Shortcut Formula
+~x = -(x + 1)
+
+
+✅ Example 1: To find ~(-6)
+First find the value of -6.
+-6 = 6 x -1    // -1 represents two's complement
+
+Step 1: Convert 6 to binary
+6 = 0110       // leftmost 0 is the sign bit (0 → +ve, 1 → -ve)
+
+Step 2: Find 1’s complement
+0110 → 1001
+
+Step 3: Add 1 (2’s complement)
+  1001
++    1
+------
+  1010
+------
+-6 = 1010
+
+Step 4: Apply bitwise NOT (~)
+Flipping all the bits of the two’s complement is the required negation value.
+~(-6) = ~(1010)
+      = 0101
+      = 5
+      
+✅ Example 2: To find ~(6)
+Step 1: Convert to binary
+6 = 0110
+
+Step 2: Apply bitwise NOT (~)
+~(6) = ~(0110)
+     = 1001
+     
+Step 3: Since MSB = 1 → number is negative
+Now convert back:
+1’s complement
+1001 → 0110
+Add 1
+  0110
++    1
+------
+  0111
+------
+~(6) = -7
+
+
+⚖️ Final Results
+~(-6) = 5
+~(6)  = -7
+
+
+🧠 Key Insight
+Positive → ~ gives negative
+Negative → ~ gives positive
+~x = -(x + 1)
