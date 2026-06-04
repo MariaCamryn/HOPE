@@ -1,0 +1,31 @@
+For input n
+If(square(n)==reverse(square(reverse(n)))
+   then n is an Adam Number
+
+Code:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int square_n=n*n;
+      int ans=0;
+      int reverse_n=reverse(n,ans);
+      int sq_rev=reverse_n*reverse_n;
+      int rev_sq_rev=reverse(sq_rev,ans);
+
+      if(square_n==rev_sq_rev){
+        System.out.print("YES");
+      }
+      else{
+        System.out.print("NO");
+      }
+    }
+    private static int reverse(int n,int ans){
+      if(n==0){
+        return ans;
+      }
+      ans=ans*10+n%10;
+      return reverse(n/10,ans);
+    }
+}
