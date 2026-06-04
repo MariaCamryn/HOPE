@@ -1,0 +1,25 @@
+To find the number from the fibonacci series in the position n (0 indexed)
+Fibonacci Series = 0, 1, 1, 2, 3, 5, 8
+Input
+6
+Output
+8
+
+Code:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      System.out.print(fib(n));
+    }
+    private static int fib(int n){
+      if(n==0){
+        return 0;
+      }
+      if(n==1){
+        return 1;
+      }
+      return fib(n-1)+fib(n-2);
+    }
+}
