@@ -1,0 +1,23 @@
+To find factorial of a number
+Factroial of input n is the product of the numbers from 1 to n
+Input
+3
+Output
+6 
+That is 3!=3*2*1
+
+Code:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      System.out.print(fact(n));
+    }
+    private static int fact(int n){
+      if(n==0){
+        return 1;
+      }
+      return n*fact(n-1);
+    }
+}
