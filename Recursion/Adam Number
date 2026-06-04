@@ -1,6 +1,13 @@
 For input n
 If(square(n)==reverse(square(reverse(n)))
    then n is an Adam Number
+Input
+12
+Output
+YES
+12=144
+12=21=441=144
+144=144
 
 Code:
 import java.util.*;
