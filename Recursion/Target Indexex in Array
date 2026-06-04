@@ -1,0 +1,40 @@
+To find index of target number but duplicates are possible
+The program should return the indexes of all the target elements
+Using Recursion
+Using ArrayList -> to return the list of indexes
+
+Input
+7
+1 2 3 4 3 5 3
+3
+Output
+2 4 6
+
+Code:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int[] arr=new int[n];
+      for(int i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+      }
+      int target=sc.nextInt();
+      int i=0;
+      ArrayList<Integer> ans=new ArrayList<>();
+      search(arr,n,i,target,ans);
+      for(int num:ans){
+        System.out.print(num+" ");
+      }
+    }
+    private static ArrayList<Integer> search(int[] arr,int n,int i,int target,ArrayList<Integer> ans){
+      if(i==n){
+        return ans;
+      }
+      if(arr[i]==target){
+        ans.add(i);
+      }
+      return search(arr,n,i+1,target,ans);
+    }
+}
