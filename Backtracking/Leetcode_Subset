@@ -1,0 +1,19 @@
+Leetcode No: 78
+
+Code:
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans=new ArrayList<>();
+        fn(0,nums,ans,new ArrayList<>());
+        return ans;
+    }
+    static void fn(int i,int[] arr,List<List<Integer>> ans,List<Integer> list){
+        ans.add(new ArrayList<>(list));
+        for(int id=i;id<arr.length;id++){
+            list.add(arr[id]);
+            fn(id+1,arr,ans,list);
+            list.remove(list.size()-1);
+        }
+
+    }
+}
