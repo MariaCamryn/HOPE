@@ -1,0 +1,36 @@
+Leetcode No: 79
+To check if a string exists in a grid of characters
+Using backtracking
+Using dfs
+Usimg recursion
+
+Code:
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int r=board.length;
+        int c=board[0].length;
+        boolean[][] vis=new boolean[r][c];
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(backtrack(board,i,j,r,c,vis,word,0)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private static boolean backtrack(char[][] board,int i,int j,int r,int c,boolean[][] vis,String word,int idx){
+        if(idx==word.length()){
+            return true;
+        }
+        if(i<0||i>=r||j<0||j>=c||vis[i][j]||board[i][j]!=word.charAt(idx)){
+            return false;
+        }
+        vis[i][j]=true;
+        boolean found=backtrack(board,i-1,j,r,c,vis,word,idx+1)||backtrack(board,i,j-1,r,c,vis,word,idx+1)||backtrack(board,i+1,j,r,c,vis,word,idx+1)||backtrack(board,i,j+1,r,c,vis,word,idx+1);
+
+        vis[i][j]=false;
+        return found;
+
+    }
+}
