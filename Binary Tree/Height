@@ -1,0 +1,8 @@
+Class Solution{
+  public int lengthOfTree(TreeNode root) {
+      if (root == null) return 0;
+      int left = lengthOfTree(root.left);
+      int right = lengthOfTree(root.right);
+      return Math.max(left, right) + 1;
+  }
+}
