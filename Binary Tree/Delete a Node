@@ -1,0 +1,69 @@
+To delete a given node from the given binary tree
+Using recursion
+Using queue
+
+If the node to be deleted is the leaf node, then we can directly delete it.
+But if it is a root node with child nodes, then we have to find the deepest node (last node) of the tree to replace in its place
+
+Steps:
+1) Find the node to be deleted by adding all the elements in a queue. After finding the node, initialise it as keynode.
+2) Continue adding all the elements into the queue and store the last node as temp.
+3) Then we call the function to find the node with the temp value as it child.
+4) Then we make it as null and then make the number to be deleted as the temp.
+
+Code:
+void delete(int key){
+  if(root.left==null && root.right==null){
+    if(root.data==key){
+      root=null;
+      return;
+    }
+  }
+  Queue<Node> q=new LinkedList<>();
+  q.add(root);
+  Node temp=null;
+  Node keynode=null;
+  while(!q.isEmpty()){
+    temp=q.poll();
+    if(temp.data==key){
+      keynode=temp;
+    }
+    if(temp.left!=null){
+      q.add(temp.left);
+    }
+    if(temp.right!=null){
+      q.add(temp.right);
+    }
+  }
+  if(keynode!=null){
+    int val=temp.data;
+    deleteDeepest(root,temp);
+    keynode.data=val;
+  }
+}
+
+void deleteDeepest(Node root, Node deleteNode){
+  Queue<Node> q=new LinkedList<>();
+  q.add(root);
+  while(!q.isEmpty()){
+    Node temp=q.poll();
+    if(temp.left!=null){
+      if(temp.left==deletenode){
+        temp.left=null;
+        return;
+      }
+      else{
+        q.add(temp.left;)
+      }
+    }
+    if(temp.right!=null){
+      if(temp.right==deletenode){
+        temp.right=null;
+        return;
+      }
+      else{
+        q.add(temp.right;)
+      }
+    }
+  }
+}
