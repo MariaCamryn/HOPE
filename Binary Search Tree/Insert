@@ -1,0 +1,15 @@
+// "static void main" must be defined in a public class.
+public class Main {
+    static node ins(int val,node root){
+        if(root==null){
+            node nn=new node(val);
+            return nn;
+        }
+        if(val<root.data){
+            root.left=ins(val,root.left);
+        }
+        else{
+            root.right=ins(val,root.right);
+        }
+   }
+}
