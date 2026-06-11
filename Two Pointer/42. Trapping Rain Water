@@ -1,0 +1,25 @@
+Input: 
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 
+6
+
+class Solution {
+    public int trap(int[] height) {
+        int n=height.length;
+        int[] leftmax=new int[n];                                  //to find the tallest block from left side
+        int[] rightmax=new int[n];                                 //to find the tallest block from right side
+        int max=0;
+        leftmax[0]=height[0];                                      //first value is appended for easy comparison
+        rightmax[n-1]=height[n-1];                                 //last value is appended
+        for(int i=1;i<n;i++){
+            leftmax[i]=Math.max(leftmax[i-1],height[i]);
+        }
+        for(int j=n-2;j>=0;j--){
+            rightmax[j]=Math.max(rightmax[j+1],height[j]);
+        }
+        for(int k=0;k<n;k++){
+            max+=Math.min(leftmax[k],rightmax[k])-height[k];       //if left block is 1 and right is 3, water can be held upto 1. so we find the smallest block
+        }                                                          //then we subtract it from the height to check if it is or has a block
+        return max;
+    }
+}
