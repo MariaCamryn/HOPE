@@ -1,5 +1,6 @@
 Using Recursion:
 //B -> A -> C
+//Left -> Root -> Right
 
 import java.util.*;
 class Node{
@@ -57,6 +58,7 @@ public class Main{
 
 Using Stack:
 //B -> A -> C
+//Left -> Root -> Right
 
 import java.util.*;
 class Node{
