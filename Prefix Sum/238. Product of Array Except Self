@@ -1,0 +1,38 @@
+Input: 
+nums = [1,2,3,4]
+Output: 
+[24,12,8,6]
+
+Input: 
+nums = [-1,1,0,-3,3]
+Output: 
+[0,0,9,0,0]
+
+Steps:
+We are creating 3 arrays to find products from left as l[], right as r[] and the resultant array as prod[].
+First we initialise l[0] and r[n-1] as 1 because there is no element in the left and right of the first and last element.
+Then we calculate product of nums[i-1] and l[i-1] and store in l[i], since we should find the product of every elements left to ith element except for itself.
+Similarly for r[], calculate product of nums[i+1] and r[i+1] to find product of elements from right of the ith element.
+Then multiply l[i] and r[i] to find result.
+
+Code:
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int n=nums.length;
+        int[] prod=new int[n];
+        int[] l=new int[n];
+        int[] r=new int[n];
+        l[0]=1;
+        r[n-1]=1;
+        for(int i=1;i<n;i++){
+            l[i]=nums[i-1]*l[i-1];
+        }
+        for(int i=n-2;i>=0;i--){
+            r[i]=nums[i+1]*r[i+1];
+        }
+        for(int i=0;i<n;i++){
+            prod[i]=l[i]*r[i];
+        }
+        return prod;
+    }
+}
