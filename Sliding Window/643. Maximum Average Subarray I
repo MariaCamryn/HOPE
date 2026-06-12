@@ -5,20 +5,35 @@ Output:
 Explanation: 
 Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
 
+Steps:
+This is fixed sliding window problem. So we will move both the left and right pointers.
+Also first we find the max sum of a window and then at the end, we find the average.
+First we find the sum of the elements in the first window, ie the first k elements and store it as currsum.
+Then we initialise maxsum as currsum for comparison.
+Then we initialise left pointer as 0 and then right pointer as k.
+Now to find the sum of elements in the next window, we subtract the value in left pointer and add the value in the right pointer to currsum.
+Then we find the max of maxsum and currsum.
+At last, we divide the maxsum by the k value to find the maxavg.
+
 Code:
 class Solution {
     public double findMaxAverage(int[] nums, int k) {
-        double sum=0;
+        int currsum=0;
+        double maxavg=0;
+        int n=nums.length;
         for(int i=0;i<k;i++){
-            sum+=nums[i];
+            currsum+=nums[i];
         }
-        double avg=sum/k;
-        for(int i=k;i<nums.length;i++){
-            sum+=nums[i]-nums[i-k];
-            if((sum/k)>avg){
-                avg=sum/k;
-            }
+        double maxsum=currsum;
+        int l=0;
+        int r=k;
+        while(r<n){
+            currsum=currsum+nums[r]-nums[l];
+            maxsum=Math.max(currsum,maxsum);
+            l++;
+            r++;
         }
-        return avg;
+        maxavg=maxsum/k;
+        return maxavg;
     }
 }
