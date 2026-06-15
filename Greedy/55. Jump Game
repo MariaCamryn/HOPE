@@ -1,0 +1,29 @@
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+Steps:
+We start traversing from last index to our target, flag.
+If i can go to flag, then i becomes the new flag.
+Steps are repeated until i=0.
+If flag = 0, return true.
+
+Code:
+class Solution {
+    public boolean canJump(int[] nums) {
+        int n=nums.length;
+        int flag=n-1;
+        int i=n-2;
+        while(i>=0){
+            if(nums[i]+i>=flag){
+                flag=i;
+            }
+            i--;
+        }
+        return flag==0;
+    }
+}
